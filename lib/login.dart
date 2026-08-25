@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/register.dart';
 
+//StatefulWidget: widget yang memiliki state yang dapat berubah
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -8,36 +9,51 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
+//State class untuk LoginPage
 class _LoginPageState extends State<LoginPage> {
+  //Variable: menyimpan status visibilitas password
   bool _obscurePassword = true;
+  //Variable: menyimpan status checkbox "Ingat saya"
   bool _rememberMe = false;
 
+  //Method build: membangun UI halaman login
   @override
   Widget build(BuildContext context) {
+    //Scaffold: struktur dasar halaman dengan app bar, body, dll
     return Scaffold(
+      //backgroundColor: warna latar belakang halaman
       backgroundColor: const Color(0xFFF5F7FB),
 
+      //body: konten utama halaman
       body: SafeArea(
+        //SafeArea: memastikan konten tidak tertutup status bar atau notch
         child: Center(
+          //Center: menempatkan child di tengah layar
           child: SingleChildScrollView(
+            //SingleChildScrollView: membuat konten bisa di-scroll jika melebihi ukuran layar
             padding: const EdgeInsets.all(20),
 
             child: ConstrainedBox(
+              //ConstrainedBox: membatasi ukuran maksimal child
               constraints: const BoxConstraints(
                 maxWidth: 500,
               ),
 
+              //Column: menyusun children secara vertikal
               child: Column(
                 children: [
 
-                   //icon
+                   //Container: icon lingkaran di atas
                   Container(
                     width: 60,
                     height: 60,
+                    //BoxDecoration: styling untuk container
                     decoration: BoxDecoration(
                       color: const Color.fromRGBO(226, 223, 23, 1),
+                      //BoxShape.circle: membuat container berbentuk lingkaran
                       shape: BoxShape.circle,
                     ),
+                    //Icon: menampilkan ikon lock
                     child: const Icon(
                       Icons.lock_outline,
                       size: 30,
@@ -45,9 +61,10 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
 
+                  //SizedBox: spacer untuk jarak vertikal
                   const SizedBox(height: 18),
 
-                   //judul
+                   //Text: judul halaman login
                   const Text(
                     'Selamat Datang',
                     style: TextStyle(
@@ -59,6 +76,7 @@ class _LoginPageState extends State<LoginPage> {
 
                   const SizedBox(height: 6),
 
+                  //Text: subtitle halaman login
                   const Text(
                     'Silakan login untuk melanjutkan',
                     style: TextStyle(
@@ -69,22 +87,26 @@ class _LoginPageState extends State<LoginPage> {
 
                   const SizedBox(height: 22),
 
-                   //card form
+                   //Card: container dengan shadow dan rounded corner
                   Card(
+                    //elevation: ketinggian shadow card
                     elevation: 3,
                     shadowColor: Colors.black26,
+                    //RoundedRectangleBorder: membuat border card melengkung
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
 
+                    //Padding: memberikan ruang di dalam card
                     child: Padding(
                       padding: const EdgeInsets.all(16),
 
+                      //Column: menyusun form fields secara vertikal
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
 
-                           //email
+                           //Text: label untuk field email
                           const Text(
                             'Email',
                             style: TextStyle(
@@ -95,43 +117,50 @@ class _LoginPageState extends State<LoginPage> {
 
                           const SizedBox(height: 6),
 
-                           TextFormField(
-                             keyboardType: TextInputType.emailAddress,
+                           //TextFormField: input field untuk email dengan styling border kuning
+                          TextFormField(
+                            keyboardType: TextInputType.emailAddress,
 
-                             decoration: InputDecoration(
-                               hintText: 'Masukkan email',
+                            //InputDecoration: styling untuk input field
+                            decoration: InputDecoration(
+                              //hintText: placeholder text
+                              hintText: 'Masukkan email',
 
-                               prefixIcon: const Icon(
-                                 Icons.email_outlined,
-                                 size: 20,
-                               ),
+                              //prefixIcon: ikon di sebelah kiri input
+                              prefixIcon: const Icon(
+                                Icons.email_outlined,
+                                size: 20,
+                              ),
 
-                               enabledBorder: OutlineInputBorder(
-                                 borderRadius: BorderRadius.circular(9),
-                                 borderSide: const BorderSide(
-                                   color: Colors.yellow,
-                                   width: 2,
-                                 ),
-                               ),
+                              //enabledBorder: border saat field tidak aktif
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(9),
+                                borderSide: const BorderSide(
+                                  color: Colors.yellow,
+                                  width: 2,
+                                ),
+                              ),
 
-                               focusedBorder: OutlineInputBorder(
-                                 borderRadius: BorderRadius.circular(9),
-                                 borderSide: const BorderSide(
-                                   color: Colors.yellow,
-                                   width: 2,
-                                 ),
-                               ),
+                              //focusedBorder: border saat field aktif/fokus
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(9),
+                                borderSide: const BorderSide(
+                                  color: Colors.yellow,
+                                  width: 2,
+                                ),
+                              ),
 
-                               contentPadding: const EdgeInsets.symmetric(
-                                 vertical: 12,
-                                 horizontal: 12,
-                               ),
-                             ),
-                           ),
+                              //contentPadding: ruang di dalam input field
+                              contentPadding: const EdgeInsets.symmetric(
+                                vertical: 12,
+                                horizontal: 12,
+                              ),
+                            ),
+                          ),
 
                           const SizedBox(height: 14),
 
-                           //password
+                           //Text: label untuk field password
                           const Text(
                             'Password',
                             style: TextStyle(
@@ -142,60 +171,67 @@ class _LoginPageState extends State<LoginPage> {
 
                           const SizedBox(height: 6),
 
-                           TextFormField(
-                             obscureText: _obscurePassword,
+                           //TextFormField: input field untuk password
+                          TextFormField(
+                            //obscureText: menyembunyikan teks password
+                            obscureText: _obscurePassword,
 
-                             decoration: InputDecoration(
-                               hintText: 'Masukkan password',
+                            decoration: InputDecoration(
+                              hintText: 'Masukkan password',
 
-                               prefixIcon: const Icon(
-                                 Icons.lock_outline,
-                                 size: 20,
-                               ),
+                              prefixIcon: const Icon(
+                                Icons.lock_outline,
+                                size: 20,
+                              ),
 
-                               suffixIcon: IconButton(
-                                 icon: Icon(
-                                   _obscurePassword
-                                       ? Icons.visibility_off_outlined
-                                       : Icons.visibility_outlined,
-                                   size: 20,
-                                 ),
+                              //suffixIcon: ikon di sebelah kanan untuk toggle visibility
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  //Conditional: menampilkan ikon berbeda berdasarkan state
+                                  _obscurePassword
+                                      ? Icons.visibility_off_outlined
+                                      : Icons.visibility_outlined,
+                                  size: 20,
+                                ),
 
-                                 onPressed: () {
-                                   setState(() {
-                                     _obscurePassword =
-                                         !_obscurePassword;
-                                   });
-                                 },
-                               ),
+                                //onPressed: callback saat ikon di-tap
+                                onPressed: () {
+                                  //setState: memperbarui state dan rebuild widget
+                                  setState(() {
+                                    _obscurePassword =
+                                        !_obscurePassword;
+                                  });
+                                },
+                              ),
 
-                               enabledBorder: OutlineInputBorder(
-                                 borderRadius: BorderRadius.circular(9),
-                                 borderSide: const BorderSide(
-                                   color: Colors.yellow,
-                                   width: 2,
-                                 ),
-                               ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(9),
+                                borderSide: const BorderSide(
+                                  color: Colors.yellow,
+                                  width: 2,
+                                ),
+                              ),
 
-                               focusedBorder: OutlineInputBorder(
-                                 borderRadius: BorderRadius.circular(9),
-                                 borderSide: const BorderSide(
-                                   color: Colors.yellow,
-                                   width: 2,
-                                 ),
-                               ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(9),
+                                borderSide: const BorderSide(
+                                  color: Colors.yellow,
+                                  width: 2,
+                                ),
+                              ),
 
-                               contentPadding: const EdgeInsets.symmetric(
-                                 vertical: 12,
-                                 horizontal: 12,
-                               ),
-                             ),
-                           ),
+                              contentPadding: const EdgeInsets.symmetric(
+                                vertical: 12,
+                                horizontal: 12,
+                              ),
+                            ),
+                          ),
 
-                           //ingat saya + lupa password
+                           //Row: menyusun checkbox dan forgot password secara horizontal
                           Row(
                             children: [
 
+                              //Checkbox: tombol checkbox untuk "Ingat saya"
                               Checkbox(
                                 value: _rememberMe,
 
@@ -209,6 +245,7 @@ class _LoginPageState extends State<LoginPage> {
                                     VisualDensity.compact,
                               ),
 
+                              //Text: label untuk checkbox
                               const Text(
                                 'Ingat saya',
                                 style: TextStyle(
@@ -216,8 +253,10 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                               ),
 
+                              //Spacer: mengisi ruang kosong di antara widgets
                               const Spacer(),
 
+                              //TextButton: tombol "Lupa Password?" tanpa border
                               TextButton(
                                 onPressed: () {
                                   // TODO:
@@ -238,15 +277,17 @@ class _LoginPageState extends State<LoginPage> {
 
                           const SizedBox(height: 4),
 
-                           //button login
+                           //SizedBox: container dengan ukuran tetap untuk button
                           SizedBox(
                             width: double.infinity,
                             height: 42,
 
+                            //OutlinedButton: tombol LOGIN dengan styling kuning
                             child: OutlinedButton(
                               onPressed: () {
                                 print('Login ditekan');
                               },
+                              //styleFrom: custom styling untuk button
                               style: OutlinedButton.styleFrom(
                               backgroundColor: Colors.yellow,
                               foregroundColor: Colors.black,
@@ -268,16 +309,18 @@ class _LoginPageState extends State<LoginPage> {
 
                           const SizedBox(height: 16),
 
-                           //pemisah atau
+                           //Row: menyusun divider dan teks "atau"
                           Row(
                             children: [
 
+                              //Expanded: membuat divider mengisi ruang
                               const Expanded(
                                 child: Divider(
                                   thickness: 0.8,
                                 ),
                               ),
 
+                              //Padding: ruang di sekitar teks "atau"
                               Padding(
                                 padding:
                                     const EdgeInsets.symmetric(
@@ -303,18 +346,21 @@ class _LoginPageState extends State<LoginPage> {
 
                           const SizedBox(height: 14),
 
-                           //button register
+                           //SizedBox: container untuk tombol "BUAT AKUN BARU"
                           SizedBox(
                             width: double.infinity,
                             height: 42,
 
+                             //OutlinedButton: tombol untuk navigasi ke register
                              child: OutlinedButton(
-                               onPressed: () {
-                                 Navigator.push(
-                                   context,
-                                   MaterialPageRoute(builder: (context) => RegisterPage()),
-                                 );
-                               },
+                              onPressed: () {
+                                //Navigator.push: navigasi ke halaman register
+                                Navigator.push(
+                                  context,
+                                  //MaterialPageRoute: menentukan halaman yang akan ditampilkan
+                                  MaterialPageRoute(builder: (context) => RegisterPage()),
+                                );
+                              },
 
                               style: OutlinedButton.styleFrom(
                               backgroundColor: Colors.yellow,
@@ -342,7 +388,7 @@ class _LoginPageState extends State<LoginPage> {
 
                   const SizedBox(height: 18),
 
-                   //footer
+                   //Text: footer copyright
                   Text(
                     '© 2026 My Application',
                     style: TextStyle(
